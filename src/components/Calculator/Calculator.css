@@ -1,0 +1,467 @@
+/* Wipe & Wash Solar Loss Assessment — scoped styles */
+.ww-loss-section {
+  --ww-navy: #08294d;
+  --ww-blue: #103f73;
+  --ww-yellow: #ffc900;
+  --ww-cream: #f5f1e7;
+  --ww-ink: #08294d;
+  width: 100%;
+  padding: clamp(52px, 7vw, 100px) 22px;
+  color: #fff;
+  background:
+    radial-gradient(ellipse at 85% 5%, rgba(83, 169, 235, .48), transparent 38%),
+    linear-gradient(135deg, #0b3a6e 0%, #1261a0 58%, #08294d 100%);
+  box-sizing: border-box;
+}
+
+.ww-loss-section *,
+.ww-loss-section *::before,
+.ww-loss-section *::after { box-sizing: border-box; }
+
+.ww-loss-shell {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.ww-loss-heading { max-width: 790px; margin: 0 auto 34px; text-align: center; }
+
+.ww-brand-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--ww-yellow);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .19em;
+}
+.ww-brand-mark {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(255, 201, 0, .65);
+  border-radius: 9px;
+  background: rgba(255, 201, 0, .12);
+  letter-spacing: -.08em;
+}
+.ww-brand-line i { width: 4px; height: 4px; border-radius: 50%; background: var(--ww-yellow); }
+
+.ww-eyebrow {
+  margin: 18px 0 10px;
+  color: var(--ww-yellow);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .2em;
+}
+.ww-loss-heading h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(34px, 5.2vw, 62px);
+  font-weight: 900;
+  line-height: .99;
+  letter-spacing: -.045em;
+}
+.ww-loss-heading h2 span { display: block; color: var(--ww-yellow); }
+.ww-loss-intro {
+  max-width: 650px;
+  margin: 18px auto 0;
+  color: rgba(255,255,255,.78);
+  font-size: clamp(15px, 1.7vw, 18px);
+  line-height: 1.65;
+}
+.ww-trust-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 22px;
+}
+.ww-trust-chips span {
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 999px;
+  color: rgba(255,255,255,.86);
+  background: rgba(255,255,255,.07);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ww-assessment-card {
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 25px;
+  color: var(--ww-ink);
+  background: #fff;
+  box-shadow: 0 28px 80px rgba(0,0,0,.24);
+}
+.ww-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #e7edf3;
+}
+.ww-card-topline .ww-eyebrow { margin: 0 0 6px; color: #a27d00; }
+.ww-card-topline h3 { margin: 0; color: var(--ww-ink); font-size: clamp(23px, 3vw, 32px); font-weight: 900; letter-spacing: -.03em; }
+.ww-step-count {
+  flex: 0 0 auto;
+  padding: 8px 11px;
+  border-radius: 999px;
+  color: #6b7887;
+  background: #f1f4f7;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .1em;
+}
+
+.ww-question { padding: 27px 0; border-bottom: 1px solid #e7edf3; }
+.ww-question-heading { display: flex; align-items: flex-start; gap: 14px; }
+.ww-step-number {
+  display: grid;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 12px;
+  color: #06294d;
+  background: #fff0ae;
+  font-size: 13px;
+  font-weight: 900;
+}
+.ww-question-heading h4 { margin: 0; color: var(--ww-ink); font-size: 18px; font-weight: 900; }
+.ww-question-heading p { margin: 5px 0 0; color: #748296; font-size: 13px; line-height: 1.5; }
+
+.ww-capacity-value, .ww-duration-value {
+  margin: 19px 0 8px 54px;
+  color: var(--ww-ink);
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -.04em;
+}
+.ww-capacity-value span { margin-left: 7px; color: #748296; font-size: 16px; font-weight: 700; letter-spacing: 0; }
+
+.ww-range {
+  display: block;
+  width: calc(100% - 54px);
+  height: 8px;
+  margin: 17px 0 0 54px;
+  border: 0;
+  border-radius: 99px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(to right, var(--ww-yellow) 0 var(--ww-range-progress), #dce3eb var(--ww-range-progress) 100%);
+  cursor: pointer;
+}
+.ww-range::-webkit-slider-thumb {
+  width: 23px; height: 23px; border: 4px solid #fff; border-radius: 50%;
+  appearance: none; -webkit-appearance: none; background: var(--ww-yellow);
+  box-shadow: 0 1px 8px rgba(8,41,77,.3);
+}
+.ww-range::-moz-range-thumb {
+  width: 16px; height: 16px; border: 4px solid #fff; border-radius: 50%;
+  background: var(--ww-yellow); box-shadow: 0 1px 8px rgba(8,41,77,.3);
+}
+.ww-range:focus-visible { outline: 3px solid rgba(255,201,0,.4); outline-offset: 6px; }
+.ww-range-labels {
+  display: flex; justify-content: space-between; gap: 8px;
+  margin: 10px 0 0 54px; color: #8995a4; font-size: 11px;
+}
+.ww-capacity-presets {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 17px 0 0 54px;
+}
+.ww-capacity-presets button {
+  min-width: 43px; padding: 8px 10px; border: 1px solid #dce3eb; border-radius: 9px;
+  color: #536477; background: #fff; font-size: 12px; font-weight: 800; cursor: pointer;
+}
+.ww-capacity-presets button.is-selected {
+  border-color: var(--ww-yellow); color: var(--ww-ink); background: #fff4c5;
+}
+
+.ww-select-wrap {
+  position: relative; display: block; margin: 19px 0 0 54px;
+}
+.ww-select-wrap select {
+  width: 100%; min-height: 54px; padding: 0 48px 0 16px;
+  appearance: none; border: 1px solid #dce3eb; border-radius: 12px;
+  color: var(--ww-ink); background: #fbfcfd; font: inherit; font-size: 15px; font-weight: 800;
+}
+.ww-select-chevron {
+  position: absolute; top: 50%; right: 18px; transform: translateY(-60%);
+  color: #8b98a7; font-size: 25px; pointer-events: none;
+}
+.ww-frequency-note {
+  display: flex; align-items: flex-start; gap: 12px; margin: 13px 0 0 54px;
+  padding: 15px; border: 1px solid #f3df91; border-radius: 13px; background: #fff9e5;
+}
+.ww-frequency-icon {
+  display: grid; flex: 0 0 30px; width: 30px; height: 30px; place-items: center;
+  border-radius: 50%; color: #5c4700; background: #ffdf68; font-size: 19px; font-weight: 900;
+}
+.ww-frequency-note small { display: block; color: #8b741f; font-size: 9px; font-weight: 900; letter-spacing: .12em; }
+.ww-frequency-note strong { display: block; margin-top: 3px; color: var(--ww-ink); font-size: 18px; font-weight: 900; }
+.ww-frequency-note p { margin: 3px 0 0; color: #7a6c46; font-size: 11px; line-height: 1.45; }
+
+.ww-duration-value { color: #9a7600; }
+.ww-duration-labels {
+  display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 5px;
+  margin: 13px 0 0 54px;
+}
+.ww-duration-labels button {
+  min-height: 34px; padding: 5px 2px; border: 1px solid #e1e6ec; border-radius: 8px;
+  color: #6c7a8b; background: #fff; font-size: 10px; font-weight: 800; cursor: pointer;
+}
+.ww-duration-labels button.is-active {
+  border-color: var(--ww-yellow); color: var(--ww-ink); background: #fff2b8;
+}
+
+.ww-tariff-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 15px;
+  padding: 21px 0 17px;
+}
+.ww-tariff-row strong { color: var(--ww-ink); font-size: 14px; }
+.ww-tariff-row p { margin: 4px 0 0; color: #8793a1; font-size: 12px; }
+.ww-text-button { padding: 7px 0; border: 0; color: #8b6b00; background: transparent; font-size: 12px; font-weight: 900; cursor: pointer; }
+.ww-tariff-input {
+  display: block; margin: 0 0 18px; padding: 14px; border-radius: 12px; background: #f4f7fa;
+}
+.ww-tariff-input > span { display: block; margin-bottom: 8px; color: #66768a; font-size: 12px; font-weight: 800; }
+.ww-tariff-input div { display: flex; align-items: center; gap: 8px; color: var(--ww-ink); font-weight: 800; }
+.ww-tariff-input input { width: 130px; padding: 9px 10px; border: 1px solid #d7e0e9; border-radius: 8px; color: var(--ww-ink); background: #fff; font: inherit; }
+
+.ww-calculate-button, .ww-quote-button {
+  display: flex; width: 100%; min-height: 58px; align-items: center; justify-content: center; gap: 14px;
+  padding: 15px 20px; border: 0; border-radius: 13px; color: #071f39;
+  background: var(--ww-yellow); box-shadow: 0 8px 20px rgba(255,201,0,.22);
+  font-size: 14px; font-weight: 950; letter-spacing: .045em; text-align: center; text-decoration: none;
+  cursor: pointer; transition: transform .18s ease, box-shadow .18s ease;
+}
+.ww-calculate-button:hover, .ww-quote-button:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(255,201,0,.3); }
+.ww-calculate-button span, .ww-quote-button span { font-size: 21px; }
+.ww-form-footnote { margin: 11px 0 0; color: #8b97a5; font-size: 11px; text-align: center; }
+
+.ww-result-card {
+  margin-top: 28px; padding: clamp(23px, 4vw, 42px); border: 1px solid rgba(255,255,255,.18);
+  border-radius: 25px; color: #fff; background: linear-gradient(145deg, #061d36, #124777);
+  box-shadow: 0 24px 65px rgba(0,0,0,.22);
+  animation: ww-result-appear .45s ease both;
+}
+@keyframes ww-result-appear {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ww-result-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ww-result-top .ww-eyebrow { margin: 0; }
+.ww-result-badge { padding: 7px 10px; border: 1px solid rgba(255,201,0,.45); border-radius: 99px; color: var(--ww-yellow); font-size: 9px; font-weight: 900; letter-spacing: .13em; }
+.ww-result-lead { margin: 27px 0 4px; color: rgba(255,255,255,.8); font-size: clamp(16px, 2vw, 21px); }
+.ww-money-result { color: var(--ww-yellow); font-size: clamp(48px, 8vw, 86px); font-weight: 950; line-height: 1.05; letter-spacing: -.06em; overflow-wrap: anywhere; }
+.ww-money-result span { font-size: .48em; letter-spacing: -.02em; }
+.ww-result-caption { margin: 8px 0 0; color: rgba(255,255,255,.65); font-size: 13px; }
+.ww-result-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
+.ww-result-metrics > div { padding: 18px; border: 1px solid rgba(255,255,255,.13); border-radius: 14px; background: rgba(255,255,255,.07); }
+.ww-result-metrics strong { display: block; color: #fff; font-size: clamp(22px, 3vw, 30px); font-weight: 950; }
+.ww-result-metrics span { display: block; margin-top: 5px; color: rgba(255,255,255,.66); font-size: 11px; line-height: 1.4; }
+.ww-loss-range { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-top: 13px; padding: 16px 18px; border-radius: 13px; color: #09294c; background: #fff; }
+.ww-loss-range span { color: #738196; font-size: 12px; font-weight: 700; }
+.ww-loss-range strong { font-size: clamp(17px, 2.5vw, 22px); font-weight: 950; }
+.ww-result-message { margin: 27px 0 20px; }
+.ww-result-message h3 { margin: 0 0 8px; color: #fff; font-size: clamp(21px, 3vw, 29px); font-weight: 900; }
+.ww-result-message p { max-width: 720px; margin: 0; color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.65; }
+.ww-quote-button { color: #071f39; }
+.ww-disclaimer { margin: 17px 0 0; color: rgba(255,255,255,.48); font-size: 10px; line-height: 1.65; }
+
+.ww-proof-strip {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; margin-top: 24px;
+}
+.ww-proof-strip > div {
+  display: flex; align-items: center; gap: 11px; padding: 16px;
+  border: 1px solid rgba(255,255,255,.15); border-radius: 13px; background: rgba(255,255,255,.06);
+}
+.ww-proof-icon {
+  display: grid; flex: 0 0 31px; width: 31px; height: 31px; place-items: center;
+  border-radius: 50%; color: var(--ww-navy); background: var(--ww-yellow); font-weight: 950;
+}
+.ww-proof-strip p { margin: 0; }
+.ww-proof-strip strong { display: block; color: #fff; font-size: 12px; }
+.ww-proof-strip small { display: block; margin-top: 3px; color: rgba(255,255,255,.58); font-size: 10px; line-height: 1.4; }
+.ww-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+.ww-compact {
+  padding: 0;
+}
+.ww-compact .ww-loss-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+  gap: 18px;
+  align-items: start;
+}
+.ww-compact .ww-assessment-card {
+  padding: 16px 18px;
+  border-radius: 15px;
+}
+.ww-compact .ww-card-topline {
+  gap: 10px;
+  padding-bottom: 14px;
+}
+.ww-compact .ww-card-topline .ww-eyebrow {
+  margin-bottom: 4px;
+  font-size: 9px;
+}
+.ww-compact .ww-card-topline h3 {
+  font-size: 21px;
+}
+.ww-compact .ww-step-count {
+  padding: 6px 8px;
+  font-size: 8px;
+}
+.ww-compact .ww-question {
+  padding: 15px 0;
+}
+.ww-compact .ww-question-heading {
+  gap: 10px;
+}
+.ww-compact .ww-step-number {
+  flex-basis: 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  font-size: 11px;
+}
+.ww-compact .ww-question-heading h4 {
+  font-size: 14px;
+}
+.ww-compact .ww-question-heading p {
+  margin-top: 3px;
+  font-size: 11px;
+}
+.ww-compact .ww-capacity-value,
+.ww-compact .ww-duration-value {
+  margin: 12px 0 5px 42px;
+  font-size: 26px;
+}
+.ww-compact .ww-capacity-value span {
+  font-size: 13px;
+}
+.ww-compact .ww-range {
+  width: calc(100% - 42px);
+  height: 6px;
+  margin: 12px 0 0 42px;
+}
+.ww-compact .ww-range-labels {
+  margin: 7px 0 0 42px;
+  font-size: 9px;
+}
+.ww-compact .ww-select-wrap {
+  margin: 12px 0 0 42px;
+}
+.ww-compact .ww-select-wrap select {
+  min-height: 42px;
+  padding-left: 12px;
+  font-size: 13px;
+}
+.ww-compact .ww-select-chevron {
+  right: 13px;
+  font-size: 20px;
+}
+.ww-compact .ww-tariff-row {
+  padding: 13px 0 10px;
+}
+.ww-compact .ww-tariff-row strong {
+  font-size: 12px;
+}
+.ww-compact .ww-tariff-row p,
+.ww-compact .ww-text-button {
+  font-size: 10px;
+}
+.ww-compact .ww-calculate-button {
+  min-height: 46px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+.ww-compact .ww-calculate-button span {
+  font-size: 17px;
+}
+.ww-compact .ww-form-footnote {
+  margin-top: 7px;
+  font-size: 9px;
+}
+.ww-compact .ww-result-card {
+  grid-column: 2;
+  grid-row: 1;
+  margin-top: 0;
+  padding: 18px;
+  border-radius: 15px;
+}
+.ww-compact .ww-result-lead {
+  margin-top: 16px;
+  font-size: 15px;
+}
+.ww-compact .ww-money-result {
+  font-size: clamp(36px, 5vw, 58px);
+}
+.ww-compact .ww-result-caption,
+.ww-compact .ww-result-metrics span,
+.ww-compact .ww-loss-range span,
+.ww-compact .ww-result-message p {
+  font-size: 10px;
+}
+.ww-compact .ww-result-metrics {
+  gap: 8px;
+  margin-top: 16px;
+}
+.ww-compact .ww-result-metrics > div {
+  padding: 11px;
+}
+.ww-compact .ww-result-metrics strong {
+  font-size: 20px;
+}
+.ww-compact .ww-result-message {
+  margin: 17px 0 13px;
+}
+.ww-compact .ww-result-message h3 {
+  font-size: 20px;
+}
+.ww-compact .ww-quote-button {
+  min-height: 46px;
+  padding: 11px 14px;
+  font-size: 11px;
+}
+.ww-compact .ww-disclaimer {
+  margin-top: 11px;
+  font-size: 9px;
+}
+
+@media (max-width: 700px) {
+  .ww-loss-section { padding: 48px 14px; }
+  .ww-compact .ww-loss-shell {
+    display: block;
+  }
+  .ww-loss-heading { margin-bottom: 25px; }
+  .ww-brand-line { font-size: 10px; letter-spacing: .13em; }
+  .ww-assessment-card { padding: 21px 17px; border-radius: 19px; }
+  .ww-card-topline { align-items: flex-start; }
+  .ww-step-count { font-size: 8px; }
+  .ww-question { padding: 23px 0; }
+  .ww-question-heading { gap: 10px; }
+  .ww-step-number { flex-basis: 34px; width: 34px; height: 34px; }
+  .ww-question-heading h4 { font-size: 16px; }
+  .ww-question-heading p { font-size: 12px; }
+  .ww-capacity-value, .ww-duration-value { margin-left: 44px; font-size: 30px; }
+  .ww-range, .ww-range-labels { width: calc(100% - 44px); margin-left: 44px; }
+  .ww-capacity-presets, .ww-select-wrap, .ww-frequency-note, .ww-duration-labels { margin-left: 44px; }
+  .ww-capacity-presets { gap: 6px; }
+  .ww-capacity-presets button { min-width: 38px; padding: 7px 8px; }
+  .ww-duration-labels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ww-duration-labels button { font-size: 11px; }
+  .ww-result-metrics { grid-template-columns: 1fr; }
+  .ww-result-metrics > div { padding: 14px 16px; }
+  .ww-proof-strip { grid-template-columns: 1fr; }
+  .ww-proof-strip > div { padding: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ww-result-card { animation: none; }
+  .ww-calculate-button, .ww-quote-button { transition: none; }
+}
