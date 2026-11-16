@@ -439,7 +439,7 @@ export default function App() {
               <b>Company Backing</b>
               <small>In Case of Any Loss</small>
             </div>
-            <img className="bottle" src="/images/shampoo.jpg" alt="Wipe & Wash Solar Shampoo bottle" />
+            <img className="bottle" src="/images/shampoo.jpeg" alt="Wipe & Wash Solar Shampoo bottle" />
           </div>
         </section>
         <section className="reviews" id="reviews">
