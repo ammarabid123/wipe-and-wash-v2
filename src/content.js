@@ -23,33 +23,36 @@ export const areas = [
 
 export const capacities = ["1–8 kW", "9–12 kW", "13–17 kW", "18–20 kW", "Above 20 kW"];
 
+// Number-of-panels ranges (edit freely; the form adds the word "panels" when sending)
+export const panelRanges = ["Less than 5", "5–10", "11–15", "16–20", "21–25", "Above 25"];
+
 export const steps = [
   {
     n: "01",
     title: "Pressure Wash",
     text: "Remove loose dust and dirt.",
-    img: "/images/process-01.jpg",
+    img: "/images/process-01.jpeg",
     alt: "Pressure washing solar panels",
   },
   {
     n: "02",
     title: "Apply Solar Shampoo",
     text: "Use our specially formulated, pH-neutral solar shampoo.",
-    img: "/images/process-02.jpg",
+    img: "/images/process-02.jpeg",
     alt: "Solar shampoo applied to panels",
   },
   {
     n: "03",
     title: "Gentle Scrubbing",
     text: "Soft-brush cleaning without any scratches.",
-    img: "/images/process-03.jpg",
+    img: "/images/process-03.jpeg",
     alt: "Soft brush cleaning solar panels",
   },
   {
     n: "04",
     title: "Final Pressure Wash",
     text: "Rinse and leave panels clean, clear and residue-free.",
-    img: "/images/process-04.jpg",
+    img: "/images/process-04.jpeg",
     alt: "Final rinse of solar panels",
   },
 ];
@@ -59,21 +62,21 @@ export const results = [
     before: "/images/res-before.jpeg",
     after: "/images/res-after.jpeg",
     title: "Residential Project",
-    meta: "10 kW System · North Nazimabad",
+    meta: "45 kW System · North Nazimabad",
     icon: "home",
   },
   {
     before: "/images/com-before.jpeg",
     after: "/images/com-after.jpeg",
     title: "Commercial Project",
-    meta: "45 kW System · SITE, Karachi",
+    meta: "120 kW System · SITE, Karachi",
     icon: "factory",
   },
   {
     before: "/images/ind-before.jpeg",
     after: "/images/ind-after.jpeg",
     title: "Industrial Project",
-    meta: "120 kW System · Korangi, Karachi",
+    meta: "444 kW System · Korangi, Karachi",
     icon: "factory",
   },
 ];

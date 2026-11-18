@@ -465,3 +465,67 @@
   .ww-result-card { animation: none; }
   .ww-calculate-button, .ww-quote-button { transition: none; }
 }
+
+/* ==========================================================================
+   FINISHING LAYER (added at the end so it wins over the rules above)
+   ========================================================================== */
+/* Framed blue panel around the calculator (the gradient was invisible with padding:0) */
+.ww-loss-section.ww-compact{padding:clamp(14px,2.4vw,28px);border-radius:22px;box-shadow:0 18px 50px rgba(6,40,75,.22)}
+
+/* One centred card until a result exists, then form + result side by side */
+.ww-compact .ww-loss-shell{grid-template-columns:minmax(0,1fr)}
+.ww-compact .ww-assessment-card{width:100%;max-width:820px;margin-inline:auto}
+.ww-compact .ww-loss-shell:has(.ww-result-card){grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.ww-compact .ww-loss-shell:has(.ww-result-card) .ww-assessment-card{max-width:none;margin-inline:0}
+.ww-compact .ww-result-card{grid-column:auto;grid-row:auto;align-self:start}
+.ww-compact .ww-money-result{font-size:clamp(30px,4vw,52px)}
+.ww-compact .ww-result-metrics{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+
+/* Contrast (WCAG AA) */
+.ww-question-heading p{color:#5f7185}
+.ww-range-labels{color:#66768a}
+.ww-form-footnote{color:#66768a}
+.ww-card-topline .ww-eyebrow{color:#8a6a00}
+.ww-disclaimer{color:rgba(255,255,255,.72)}
+.ww-result-caption{color:rgba(255,255,255,.78)}
+
+/* Keyboard focus */
+.ww-calculate-button:focus-visible,.ww-quote-button:focus-visible,.ww-text-button:focus-visible,.ww-select-wrap select:focus-visible,.ww-tariff-input input:focus-visible{outline:3px solid #08294d;outline-offset:3px}
+.ww-result-card .ww-quote-button:focus-visible{outline-color:#fff}
+
+/* Bigger slider thumbs on touch screens */
+@media (pointer:coarse){
+  .ww-range{height:8px}
+  .ww-range::-webkit-slider-thumb{width:30px;height:30px}
+  .ww-range::-moz-range-thumb{width:22px;height:22px}
+}
+
+/* Tablet: stack form and result */
+@media (max-width:900px){
+  .ww-compact .ww-loss-shell:has(.ww-result-card){grid-template-columns:minmax(0,1fr)}
+  .ww-compact .ww-assessment-card{max-width:none}
+}
+
+/* Mobile: undo the tiny desktop-compact type */
+@media (max-width:700px){
+  .ww-loss-section.ww-compact{padding:12px;border-radius:18px}
+  .ww-compact .ww-loss-shell{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+  .ww-compact .ww-assessment-card{padding:18px 16px}
+  .ww-compact .ww-card-topline h3{font-size:20px}
+  .ww-compact .ww-step-count{font-size:9px}
+  .ww-compact .ww-question{padding:20px 0}
+  .ww-compact .ww-question-heading h4{font-size:16px}
+  .ww-compact .ww-question-heading p{font-size:12.5px}
+  .ww-compact .ww-capacity-value,.ww-compact .ww-duration-value{margin-left:42px;font-size:28px}
+  .ww-compact .ww-range-labels{font-size:11px}
+  .ww-compact .ww-select-wrap select{min-height:50px;font-size:16px}
+  .ww-compact .ww-tariff-row strong{font-size:14px}
+  .ww-compact .ww-tariff-row p,.ww-compact .ww-text-button{font-size:12px}
+  .ww-tariff-input input{font-size:16px}
+  .ww-compact .ww-calculate-button,.ww-compact .ww-quote-button{min-height:52px;font-size:13px}
+  .ww-compact .ww-form-footnote{font-size:11px}
+  .ww-compact .ww-result-card{padding:18px 16px}
+  .ww-compact .ww-result-caption,.ww-compact .ww-result-metrics span,.ww-compact .ww-loss-range span,.ww-compact .ww-result-message p{font-size:12px}
+  .ww-compact .ww-result-metrics{grid-template-columns:1fr}
+  .ww-compact .ww-disclaimer{font-size:10.5px}
+}

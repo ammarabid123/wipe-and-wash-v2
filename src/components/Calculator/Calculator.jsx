@@ -122,7 +122,7 @@ export default function Calculator({ quoteHref = "#contact" }) {
           <div className="ww-card-topline">
             <div>
               <p className="ww-eyebrow">FREE SOLAR LOSS ASSESSMENT</p>
-              <h3>Calculate your solar loss</h3>
+              <h3>Calculate Your Solar Loss</h3>
             </div>
             <span className="ww-step-count">3 SIMPLE QUESTIONS</span>
           </div>
@@ -131,8 +131,8 @@ export default function Calculator({ quoteHref = "#contact" }) {
             <div className="ww-question-heading">
               <span className="ww-step-number">01</span>
               <div>
-                <h4>What's your solar system capacity?</h4>
-                <p>Move the slider to match your installed system size.</p>
+                <h4>What's Your Solar System Capacity?</h4>
+                <p>Move The Slider To Match Your Installed System Size.</p>
               </div>
             </div>
             <div className="ww-capacity-value">
@@ -164,8 +164,8 @@ export default function Calculator({ quoteHref = "#contact" }) {
             <div className="ww-question-heading">
               <span className="ww-step-number">02</span>
               <div>
-                <h4>Where is your solar system located?</h4>
-                <p>Choose your Karachi area for a suggested cleaning interval.</p>
+                <h4>Where Is Your Solar System Located?</h4>
+                <p>Choose Your Karachi Area For A Suggested Cleaning Interval.</p>
               </div>
             </div>
             <label className="ww-select-wrap">
@@ -189,8 +189,8 @@ export default function Calculator({ quoteHref = "#contact" }) {
             <div className="ww-question-heading">
               <span className="ww-step-number">03</span>
               <div>
-                <h4>When did you last clean your panels?</h4>
-                <p>How long have they been operating without a clean?</p>
+                <h4>When Did You Last Clean Your Panels?</h4>
+                <p>How Long Have They Been Operating Without A Clean?</p>
               </div>
             </div>
             <div className="ww-duration-value">{selectedDuration.label}</div>
@@ -212,8 +212,8 @@ export default function Calculator({ quoteHref = "#contact" }) {
 
           <div className="ww-tariff-row">
             <div>
-              <strong>Electricity rate</strong>
-              <p>Default estimate: Rs. 40 per unit</p>
+              <strong>ELECTRICITY RATE</strong>
+              <p>Default Estimate: Rs. 40 Per Unit</p>
             </div>
             <button
               type="button"
@@ -226,7 +226,7 @@ export default function Calculator({ quoteHref = "#contact" }) {
           </div>
           {showTariff && (
             <label className="ww-tariff-input">
-              <span>Electricity tariff (Rs. per kWh)</span>
+              <span>ELECTRICITY TARIFF (Rs. Per kWh)</span>
               <div>
                 <span>Rs.</span>
                 <input
@@ -249,7 +249,7 @@ export default function Calculator({ quoteHref = "#contact" }) {
             CALCULATE MY SOLAR LOSS <span aria-hidden="true">→</span>
           </button>
           <p className="ww-form-footnote">
-            Your estimate is calculated from the details you enter. No signup required.
+            Your Estimate Is Calculated From The Details You Enter. No Signup Required.
           </p>
         </form>
 
@@ -259,41 +259,41 @@ export default function Calculator({ quoteHref = "#contact" }) {
               <p className="ww-eyebrow">YOUR SOLAR LOSS ESTIMATE</p>
               <span className="ww-result-badge">ESTIMATE</span>
             </div>
-            <p className="ww-result-lead">Your uncleaned panels could be costing you</p>
+            <p className="ww-result-lead">Your Uncleaned Panels Could Be Costing You</p>
             <div className="ww-money-result">
               <span>Rs.</span> {formatPKR(result.financialLoss)}
             </div>
             <p className="ww-result-caption">
-              Estimated value of lost electricity over {result.days} days
+              Estimated Value Of Lost Electricity Over {result.days} days
             </p>
 
             <div className="ww-result-metrics">
               <div>
                 <strong>{formatNumber(result.lostUnits)}</strong>
-                <span>Estimated lost units (kWh)</span>
+                <span>Estimated Lost Units (kWh)</span>
               </div>
               <div>
                 <strong>{Math.max(0, result.lossPercent - 2.5).toFixed(0)}–{Math.min(35, result.lossPercent + 2.5).toFixed(0)}%</strong>
-                <span>Illustrative soiling-loss range</span>
+                <span>Illustrative Soiling-Loss Range</span>
               </div>
               <div>
                 <strong>Rs. {formatPKR(result.tariff)}</strong>
-                <span>Electricity rate per unit</span>
+                <span>Electricity Rate Per Unit</span>
               </div>
             </div>
 
             <div className="ww-loss-range">
-              <span>Estimated financial loss range</span>
+              <span>Estimated Financial Loss Range</span>
               <strong>
                 Rs. {formatPKR(result.financialLoss * 0.9)} – {formatPKR(result.financialLoss * 1.1)}
               </strong>
             </div>
 
             <div className="ww-result-message">
-              <h3>Why keep losing when you can clean?</h3>
+              <h3>Why Keep Losing When You Can Clean?</h3>
               <p>
-                Professional solar panel cleaning helps remove dust and deposits
-                that can reduce the sunlight reaching your panels.
+                Professional Solar Panel Cleaning Helps Remove Dust And Deposits.
+                That Can Reduce The Sunlight Reaching Your Panels.
               </p>
             </div>
             <a className="ww-quote-button" href={quoteHref}>

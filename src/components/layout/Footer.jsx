@@ -1,5 +1,5 @@
-import { site } from "./content.js";
-import { IconFacebook, IconInstagram, IconWhatsApp } from "./icons.jsx";
+import { site } from "../../content.js";
+import { IconFacebook, IconInstagram, IconWhatsApp } from "../../icons.jsx";
 
 export default function Footer() {
   return (
@@ -14,18 +14,21 @@ export default function Footer() {
             <p>Panel-safe cleaning for homes, businesses and factories.</p>
             <p className="footer-muted">© {new Date().getFullYear()} Wipe &amp; Wash. Solar panel cleaning services.</p>
           </div>
+          <div className="footer-center">
           <div className="footer-column footer-quick-links">
-            <h3>Quick links</h3>
+            <h3>Quick Links</h3>
             <nav className="footer-links" aria-label="Footer">
               <a href="#process">Our Process</a>
-              <a href="#results">Results</a>
-              <a href="#reviews">Reviews</a>
-              <a href="#calculator">Get a quote</a>
+              <a href="#results">Our Results</a>
+              <a href="#reviews">Our Reviews</a>
               <a href={site.facebook} target="_blank" rel="noreferrer">Facebook</a>
               <a href={site.instagram} target="_blank" rel="noreferrer">Instagram</a>
+              <a href={`https://wa.me/${site.whatsappNumber}`} target="_blank" rel="noreferrer">WhatsApp</a>
+              <a className="footer-quote" href="#calculator">Get a Quote</a>
             </nav>
           </div>
-          <div className="footer-column">
+          </div>
+          <div className="footer-column footer-contact">
             <h3>Contact</h3>
             <p>Serving homes, businesses and factories across Karachi.</p>
             <p>
