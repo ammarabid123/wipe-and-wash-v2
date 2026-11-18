@@ -1,6 +1,12 @@
-node_modules
-dist
-.DS_Store
+node_modules/
+dist/
+build/
 .env
 .env.*
-.netlify
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
+.vscode/*
+!.vscode/extensions.json
+.netlify/
