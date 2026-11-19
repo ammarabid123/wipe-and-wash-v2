@@ -10,13 +10,13 @@ export default function Footer() {
             <a className="brand" href="#home">
               <img src="/images/logo-white.png" alt="Wipe & Wash" />
             </a>
-            <p className="footer-tagline">Professional solar panel cleaning across Karachi.</p>
-            <p>Panel-safe cleaning for homes, businesses and factories.</p>
-            <p className="footer-muted">© {new Date().getFullYear()} Wipe &amp; Wash. Solar panel cleaning services.</p>
+            <p className="footer-tagline">Solar Lagaooo... Lekin Saaf Bhi Tou Rakhooo...</p>
+            <p>Professional Solar Panel Cleaning Services For Homes, Businesses And Factories.</p>
+            <p className="footer-muted">© {new Date().getFullYear()} Wipe &amp; Wash. Solar Panel Cleaning Services.</p>
           </div>
           <div className="footer-center">
           <div className="footer-column footer-quick-links">
-            <h3>Quick Links</h3>
+            <h3><br/>Quick Links</h3>
             <nav className="footer-links" aria-label="Footer">
               <a href="#process">Our Process</a>
               <a href="#results">Our Results</a>
@@ -29,8 +29,8 @@ export default function Footer() {
           </div>
           </div>
           <div className="footer-column footer-contact">
-            <h3>Contact</h3>
-            <p>Serving homes, businesses and factories across Karachi.</p>
+            <h3><br/>Contact</h3>
+            <p>Serving Homes, Businesses And Factories Across Karachi.</p>
             <p>
               <a className="footer-phone" href={`tel:${site.phoneTel}`}>
                 {site.phoneDisplay}

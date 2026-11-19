@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { capacities, faqs, openWhatsApp, panelRanges, submitNetlify } from "../../content.js";
+import { faqs, openWhatsApp, submitNetlify } from "../../content.js";
 import { IconCalc, IconPanels, IconPin, IconWhatsApp } from "../../icons.jsx";
+
+// Allowed values for the capacity box (change here if the limits ever change)
+const LIMITS = { panels: { min: 1, max: 5000 }, kw: { min: 1, max: 3000 } };
 
 function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   const [capacityType, setCapacityType] = useState("panels"); // "panels" | "kw"
   const [capacity, setCapacity] = useState("");
   const isPanels = capacityType === "panels";
-  const options = isPanels ? panelRanges : capacities;
+  const limit = isPanels ? LIMITS.panels : LIMITS.kw;
 
   function chooseType(type) {
     setCapacityType(type);
-    setCapacity(""); // ranges differ, so clear the old selection
+    setCapacity(""); // limits differ, so clear the old number
   }
 
   async function onSubmit(event) {
@@ -19,7 +22,7 @@ function QuoteForm() {
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
     delete data.capacityType;
-    if (data.capacity && isPanels) data.capacity = `${data.capacity} panels`;
+    if (data.capacity) data.capacity = `${data.capacity} ${isPanels ? "panels" : "kW"}`;
 
     try {
       await submitNetlify("quote", data);
@@ -63,10 +66,22 @@ function QuoteForm() {
       </fieldset>
 
       <label className="field">{isPanels ? "Number of Solar Panels" : "System Size (kW)"}
-        <select name="capacity" value={capacity} onChange={(event) => setCapacity(event.target.value)}>
-          <option value="">{isPanels ? "Select number of panels" : "Select kW range"}</option>
-          {options.map((option) => <option key={option} value={option}>{option}</option>)}
-        </select>
+        <span className="unit-input">
+          <input
+            name="capacity"
+            type="number"
+            inputMode={isPanels ? "numeric" : "decimal"}
+            min={limit.min}
+            max={limit.max}
+            step={isPanels ? 1 : "any"}
+            value={capacity}
+            onChange={(event) => setCapacity(event.target.value)}
+            placeholder={isPanels ? "e.g. 24" : "e.g. 10"}
+            aria-describedby="capacity-hint"
+          />
+          <span className="unit" aria-hidden="true">{isPanels ? "panels" : "kW"}</span>
+        </span>
+        <small id="capacity-hint" className="field-hint">Enter a number from {limit.min} to {limit.max.toLocaleString("en-US")}</small>
       </label>
       <label className="field">Area in Karachi *<input name="location" required placeholder="Your area" /></label>
       <button className="btn yellow" type="submit"><IconWhatsApp /> Get My Quote on WhatsApp →</button>
@@ -86,7 +101,7 @@ export default function ContactSection() {
         <div className="final-copy">
           <h2>Ready to <em>Get Your<br />Solar Panels Cleaned?</em></h2>
           <p>Get a free quote today and keep your solar system performing at its best.</p>
-          <div className="proof"><span><IconPanels /> 18,000+ Panels Cleaned</span><span><IconPin /> All Over Karachi</span></div>
+          <div className="proof"><span><IconPanels /> 1 Million+ Panels Cleaned</span><span><IconPin /> All Over Karachi</span></div>
         </div>
         <QuoteForm />
       </div>

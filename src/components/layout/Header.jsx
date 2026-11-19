@@ -2,10 +2,10 @@ import { IconCalc, IconMenu, IconWhatsApp } from "../../icons.jsx";
 
 const links = [
   ["#home", "Home"],
-  ["#residential", "Residential"],
-  ["#industrial", "Industrial"],
   ["#process", "Our Process"],
+ // ["#calculator", "Calculate Loss"],
   ["#results", "Results"],
+  ["#residential", "Why Choose Us"],
   ["#reviews", "Reviews"],
   ["#faq", "FAQ"],
 ];
