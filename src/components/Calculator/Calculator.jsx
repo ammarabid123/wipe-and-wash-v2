@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { site } from "../../content.js";
 import "./Calculator.css";
 
 /*
@@ -19,15 +20,15 @@ const PRODUCTION_PER_KW_PER_DAY = 4.65;
 const DEFAULT_TARIFF = 40;
 
 const DURATION_OPTIONS = [
-  { label: "7 days", days: 7 },
-  { label: "15 days", days: 15 },
-  { label: "23 days", days: 23 },
-  { label: "30 days", days: 30 },
-  { label: "2 months", days: 60 },
-  { label: "3 months", days: 90 },
-  { label: "4 months", days: 120 },
-  { label: "5 months", days: 150 },
-  { label: "6 months", days: 180 },
+  { label: "7 Days", days: 7 },
+  { label: "15 Days", days: 15 },
+  { label: "23 Days", days: 23 },
+  { label: "30 Days", days: 30 },
+  { label: "2 Months", days: 60 },
+  { label: "3 Months", days: 90 },
+  { label: "4 Months", days: 120 },
+  { label: "5 Months", days: 150 },
+  { label: "6 Months", days: 180 },
 ];
 
 const KARACHI_AREAS = [
@@ -75,7 +76,22 @@ function formatNumber(value) {
   }).format(Math.round(value));
 }
 
-export default function Calculator({ quoteHref = "#contact" }) {
+// Builds the WhatsApp link that carries the user's calculator inputs and estimate
+function buildQuoteLink(result) {
+  const message = [
+    "Assalam-o-Alaikum Wipe & Wash.",
+    "Cleaning Quotation Request (from the Solar Loss Calculator)",
+    `System size: ${formatNumber(result.capacity)} kW`,
+    `Area: ${result.area}`,
+    `Last cleaned: ${result.durationLabel} ago`,
+    `Electricity rate: Rs. ${formatPKR(result.tariff)} per unit`,
+    `Estimated loss: Rs. ${formatPKR(result.financialLoss)} (about ${formatNumber(result.lostUnits)} kWh over ${result.days} days)`,
+    "Please contact me with a quotation.",
+  ].join("\n");
+  return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+export default function Calculator() {
   const [capacity, setCapacity] = useState(10);
   const [area, setArea] = useState("DHA");
   const [durationIndex, setDurationIndex] = useState(3);
@@ -169,7 +185,7 @@ export default function Calculator({ quoteHref = "#contact" }) {
               </div>
             </div>
             <label className="ww-select-wrap">
-              <span className="ww-sr-only">Select your area</span>
+              <span className="ww-sr-only">Select Your Area</span>
               <select
                 value={area}
                 onChange={(event) => {
@@ -212,8 +228,8 @@ export default function Calculator({ quoteHref = "#contact" }) {
 
           <div className="ww-tariff-row">
             <div>
-              <strong>ELECTRICITY RATE</strong>
-              <p>Default Estimate: Rs. 40 Per Unit</p>
+              <strong>Electricity Rate</strong>
+              <p>Default Estimate: Rs. 40 per unit</p>
             </div>
             <button
               type="button"
@@ -226,7 +242,7 @@ export default function Calculator({ quoteHref = "#contact" }) {
           </div>
           {showTariff && (
             <label className="ww-tariff-input">
-              <span>ELECTRICITY TARIFF (Rs. Per kWh)</span>
+              <span>Electricity Tariff (Rs. per kWh)</span>
               <div>
                 <span>Rs.</span>
                 <input
@@ -264,7 +280,7 @@ export default function Calculator({ quoteHref = "#contact" }) {
               <span>Rs.</span> {formatPKR(result.financialLoss)}
             </div>
             <p className="ww-result-caption">
-              Estimated Value Of Lost Electricity Over {result.days} days
+              Estimated Value Of Lost Electricity Over {result.days} Days
             </p>
 
             <div className="ww-result-metrics">
@@ -290,13 +306,18 @@ export default function Calculator({ quoteHref = "#contact" }) {
             </div>
 
             <div className="ww-result-message">
-              <h3>Why Keep Losing When You Can Clean?</h3>
+              <h3>Why Keep Losing Money When You Can Clean?</h3>
               <p>
-                Professional Solar Panel Cleaning Helps Remove Dust And Deposits.
+                Professional Solar Panel Cleaning Helps Remove Dust And Deposits
                 That Can Reduce The Sunlight Reaching Your Panels.
               </p>
             </div>
-            <a className="ww-quote-button" href={quoteHref}>
+            <a
+              className="ww-quote-button"
+              href={buildQuoteLink(result)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GET MY WIPE &amp; WASH QUOTATION <span aria-hidden="true">→</span>
             </a>
             <p className="ww-disclaimer">
