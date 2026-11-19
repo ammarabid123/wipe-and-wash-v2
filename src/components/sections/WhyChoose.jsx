@@ -10,7 +10,7 @@ const reasons = [
 
 export default function WhyChoose() {
   return (
-    <section className="why" id="residential">
+    <section className="why" id="why-choose">
       <div className="wrap why-layout">
         <div className="why-title">Why Choose<br />Wipe & Wash?</div>
         {reasons.map(([Icon, title, description]) => (

@@ -92,7 +92,7 @@ function QuoteForm() {
 
 export default function ContactSection() {
   return (
-    <section className="wrap bottom">
+    <section className="wrap bottom" id="contact">
       <div className="faq" id="faq">
         <h2>Frequently Asked Questions</h2>
         {faqs.map((faq) => <details key={faq.q}><summary>{faq.q}</summary><p>{faq.a}</p></details>)}

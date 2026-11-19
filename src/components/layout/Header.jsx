@@ -4,10 +4,10 @@ const links = [
   ["#home", "Home"],
   ["#process", "Our Process"],
  // ["#calculator", "Calculate Loss"],
-  ["#results", "Results"],
-  ["#residential", "Why Choose Us"],
+  ["#why-choose", "Why Choose Us"],
   ["#reviews", "Reviews"],
   ["#faq", "FAQ"],
+  ["#contact", "Contact"],
 ];
 
 function Brand() {

@@ -24,7 +24,9 @@ export default function Footer() {
               <a href={site.facebook} target="_blank" rel="noreferrer">Facebook</a>
               <a href={site.instagram} target="_blank" rel="noreferrer">Instagram</a>
               <a href={`https://wa.me/${site.whatsappNumber}`} target="_blank" rel="noreferrer">WhatsApp</a>
-              <a className="footer-quote" href="#calculator">Get a Quote</a>
+              <a className="footer-quote" href="https://wa.me/923202112387" target="_blank" rel="noreferrer">
+                Get a Quote
+              </a>
             </nav>
           </div>
           </div>
