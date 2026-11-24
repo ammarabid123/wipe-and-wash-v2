@@ -30,7 +30,7 @@ export default function WashDemo() {
           </p>
           <div className="hw-ctas">
             <a className="btn yellow" href={wa} target="_blank" rel="noopener noreferrer">Book on WhatsApp</a>
-            <a className="btn outline" href="#industrial">Get a quote</a>
+            <a className="btn outline" href="#clean-quote">Get a quote</a>
           </div>
         </div>
 

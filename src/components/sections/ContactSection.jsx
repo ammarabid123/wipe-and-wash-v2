@@ -129,7 +129,7 @@ export default function ContactSection() {
               <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
         </div>        
       </div>
-      <div className="final" id="industrial">
+      <div className="final" id="clean-quote">
         <div className="final-copy">
           <h2>Ready to <em>Get Your<br />Solar Panels Cleaned?</em></h2>
           <p>Get A Free Quote Today And Keep Your Solar System Performing At Its Best.</p>

@@ -8,7 +8,7 @@ const links = [
   ["#why-choose", "Why Choose Us"],
   ["#reviews", "Reviews"],
   ["#faq", "FAQ"],
-  ["#contact", "Contact"],
+  ["#clean-quote", "Contact"],
 ];
 
 function Brand() {
