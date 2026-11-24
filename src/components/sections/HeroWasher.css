@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Hero: interactive solar-panel washer (used by Hero.jsx + panelWasher.js)
+   All classes start with "hw" so they cannot clash with the rest of the site.
+   ========================================================================== */
+.hw{position:relative;color:#fff;padding:clamp(28px,5vw,56px) 0 clamp(44px,6vw,76px);background:radial-gradient(120% 90% at 85% 0%,#0f4a86 0%,#0b3a6e 45%,#062849 100%)}
+.hw [hidden]{display:none!important}
+.hw-grid{display:grid;gap:28px;align-items:center}
+@media(min-width:1000px){.hw-grid{grid-template-columns:minmax(0,.72fr) minmax(0,1.6fr);gap:40px}}
+.hw h1{margin:14px 0 0;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.08;font-weight:800;letter-spacing:-.02em}
+.hw-copy p{max-width:34rem;margin:16px 0 22px;color:#cfe0f5;font-size:clamp(14px,1.6vw,16px);line-height:1.6}
+.hw-ctas{display:flex;flex-wrap:wrap;gap:10px}
+@media(max-width:700px){.hw-ctas .btn{flex:1 1 100%}}
+
+/* canvas stage */
+.hw-stage{position:relative;aspect-ratio:1100/620;border-radius:16px;overflow:hidden;background:#8f8a80;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.hw-stage canvas,.hw-glare{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hw-fx{cursor:none;touch-action:none}
+.hw-glare{pointer-events:none;overflow:hidden;background:radial-gradient(circle at 10% 6%,rgba(255,244,205,.38),transparent 32%),linear-gradient(115deg,rgba(255,255,255,.24) 0%,rgba(255,255,255,0) 36%,rgba(255,255,255,0) 64%,rgba(255,255,255,.09) 100%)}
+.hw-glare::before{content:"";position:absolute;inset:-20%;background:radial-gradient(ellipse 30% 20% at 30% 35%,rgba(255,255,255,.17),transparent 70%),radial-gradient(ellipse 24% 16% at 72% 62%,rgba(255,255,255,.13),transparent 70%);animation:hw-cloud 22s ease-in-out infinite alternate}
+@keyframes hw-cloud{to{transform:translateX(14%)}}
+.hw-hud{position:absolute;left:12px;top:12px;display:flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(11,34,64,.82);color:#fff;font-size:13px;font-weight:700;pointer-events:none}
+.hw-hud i{width:10px;height:10px;border-radius:50%;background:var(--c,#b5651d)}
+.hw-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;padding:10px 18px;border-radius:999px;background:rgba(11,34,64,.82);color:#fff;font-weight:700;white-space:nowrap;pointer-events:none;font-size:clamp(12px,2.4vw,15px)}
+.hw-stage.hw-done::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);transform:translateX(-100%);animation:hw-shine 1.3s ease-out forwards}
+@keyframes hw-shine{to{transform:translateX(100%)}}
+.hw-stage.hw-done .hw-glare{background:linear-gradient(115deg,rgba(255,255,255,.42) 0%,rgba(255,255,255,0) 42%,rgba(255,255,255,0) 58%,rgba(255,255,255,.2) 100%)}
+
+/* controls */
+.hw-ctl{margin-top:16px;display:grid;gap:14px}
+.hw-tools{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:560px){.hw-tools{grid-template-columns:repeat(4,1fr)}}
+.hw-tool{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;min-height:64px;border-radius:12px;background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.2);font:inherit;font-size:14px;font-weight:700;line-height:1.2;text-align:center;cursor:pointer}
+.hw-tool b{font-size:22px;font-weight:800}
+.hw-tool[aria-pressed="true"]{background:#f2c300;border-color:#f2c300;color:#0b2240}
+.hw-mrow{display:flex;align-items:center;gap:12px;font-weight:700;font-size:14px}
+.hw-meter{flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
+.hw-meter i{display:block;height:100%;width:var(--p,0%);background:#f2c300;transition:width .3s}
+.hw-msg{margin:0;min-height:3em;color:#cfe0f5;font-size:14px;line-height:1.5}
+.hw-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.hw-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff;font:inherit;font-size:14px;font-weight:700;text-decoration:none;cursor:pointer}
+.hw-btn-y{background:#f2c300;border-color:#f2c300;color:#0b2240}
+.hw :focus-visible{outline:3px solid #f2c300;outline-offset:2px}
+@media(max-width:700px){.hw-btn{flex:1 1 auto}}
+@media(prefers-reduced-motion:reduce){.hw-glare::before,.hw-stage.hw-done::after{animation:none}}
