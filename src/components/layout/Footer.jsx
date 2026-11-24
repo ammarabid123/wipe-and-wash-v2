@@ -20,7 +20,6 @@ export default function Footer() {
               <a href="#process">Our Process</a>
               <a href="#results">Our Results</a>
               <a href="#reviews">Our Reviews</a>
-              <a href="#faq">FAQ</a>
               <a href={site.facebook} target="_blank" rel="noreferrer">Facebook</a>
               <a href={site.instagram} target="_blank" rel="noreferrer">Instagram</a>
               <a href={`https://wa.me/${site.whatsappNumber}`} target="_blank" rel="noreferrer">WhatsApp</a>
