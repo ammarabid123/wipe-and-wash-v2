@@ -115,6 +115,19 @@ img,video{max-width:100%}
 .faq details p{font-size:12.5px}
 .faq summary{padding:2px 0}
 
+/* FAQ: Scrollinf effect: fade in each question as it enters the viewport */
+.faq-scroll-container {
+  max-height: 350px; /* Shows roughly 5 items; adjust by ±20px if needed */
+  overflow-y: auto; padding-right: 8px; /* Prevents scrollbar from overlapping the '+' icon */
+  display: flex; flex-direction: column;
+  gap: 12px; /* Keeps spacing consistent between FAQ cards */
+}
+
+/* Optional: Clean, subtle scrollbar styling */
+.faq-scroll-container::-webkit-scrollbar { width: 6px;} .faq-scroll-container::-webkit-scrollbar-track { background: #f1f5f9;  border-radius: 8px;}
+.faq-scroll-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px;}
+.faq-scroll-container::-webkit-scrollbar-thumb:hover { background: #94a3b8;}
+
 /* Process: consistent image heights */
 .step img{height:auto;aspect-ratio:4/3}
 
@@ -230,6 +243,13 @@ img,video{max-width:100%}
 .footer-links .footer-quote{margin-top:2px;padding:6px 20px}
 .footer-whatsapp{margin-top:8px;padding:8px 14px}
 .footer-muted{margin-top:6px!important}
+.footer-legal { width: 100%; flex-basis: 100%; grid-column: 1 / -1; text-align: center;
+  margin-top: 0px;     /* Reduced from 24px (use 0px if parent already has a gap) */
+  padding-top: 0px;   /* Subtle breathing room; reduce to 0px to make it even tighter */
+  padding-bottom: 0;}
+.footer-legal p { margin: 0 auto; text-align: center; font-size: 11px; color: #9fb3c6; line-height: 0.5; }
+
+
 @media(max-width:900px){.footer-grid{gap:16px}}
 @media(max-width:700px){.footer{padding:20px 0 84px}.footer-about .brand img{width:150px}.footer-links a{padding:1px 10px}}
 

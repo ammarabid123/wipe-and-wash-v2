@@ -5,6 +5,27 @@ import { IconCalc, IconPanels, IconPin, IconWhatsApp } from "../../icons.jsx";
 // Allowed values for the capacity box (change here if the limits ever change)
 const LIMITS = { panels: { min: 1, max: 5000 }, kw: { min: 1, max: 3000 } };
 
+// Fisher-Yates shuffle (returns a new array)
+function shuffled(list) {
+  const items = [...list];
+  for (let i = items.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  return items;
+}
+
+// FAQPage structured data for search engines (always in the original order, so it never changes between visits)
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [...faqs ].map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a.replace(/\n\n/g, " ") },
+  })),
+};
+
 function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   const [capacityType, setCapacityType] = useState("panels"); // "panels" | "kw"
@@ -83,24 +104,35 @@ function QuoteForm() {
         </span>
         <small id="capacity-hint" className="field-hint">Enter a number from {limit.min} to {limit.max.toLocaleString("en-US")}</small>
       </label>
-      <label className="field">Area in Karachi *<input name="location" required placeholder="Your area" /></label>
+      <label className="field">Area In Karachi *<input name="location" required placeholder="Your area" /></label>
       <button className="btn yellow" type="submit"><IconWhatsApp /> Get My Quote on WhatsApp →</button>
-      {submitted ? <p className="form-ok">Quote request sent on WhatsApp.</p> : null}
+      {submitted ? <p className="form-ok">Quote Request Sent On WhatsApp.</p> : null}
     </form>
   );
 }
 
 export default function ContactSection() {
+  // Shuffled once per page load: the new FAQs in random order, then the older ones in their fixed order
+  const [faqList] = useState(() => [...shuffled(faqs) ]);
+
   return (
-    <section className="wrap bottom" id="contact">
+    <section className="wrap bottom">
       <div className="faq" id="faq">
         <h2>Frequently Asked Questions</h2>
-        {faqs.map((faq) => <details key={faq.q}><summary>{faq.q}</summary><p>{faq.a}</p></details>)}
+        <div className="faq-scroll-container">
+          {faqList.map((faq) => (
+                <details key={faq.q}>
+                <summary>{faq.q}</summary>
+            {faq.a.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                 </details>
+               ))}
+              <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+        </div>        
       </div>
       <div className="final" id="industrial">
         <div className="final-copy">
           <h2>Ready to <em>Get Your<br />Solar Panels Cleaned?</em></h2>
-          <p>Get a free quote today and keep your solar system performing at its best.</p>
+          <p>Get A Free Quote Today And Keep Your Solar System Performing At Its Best.</p>
           <div className="proof"><span><IconPanels /> 1 Million+ Panels Cleaned</span><span><IconPin /> All Over Karachi</span></div>
         </div>
         <QuoteForm />
