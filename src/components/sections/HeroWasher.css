@@ -2,11 +2,11 @@
    Hero: interactive solar-panel washer (used by Hero.jsx + panelWasher.js)
    All classes start with "hw" so they cannot clash with the rest of the site.
    ========================================================================== */
-.hw{position:relative;color:#fff;padding:clamp(28px,5vw,56px) 0 clamp(44px,6vw,76px);background:radial-gradient(120% 90% at 85% 0%,#0f4a86 0%,#0b3a6e 45%,#062849 100%)}
+.hw{position:relative;margin:26px 0;color:#fff;padding:clamp(28px,5vw,56px) 0 clamp(44px,6vw,76px);background:radial-gradient(120% 90% at 85% 0%,#0f4a86 0%,#0b3a6e 45%,#062849 100%)}
 .hw [hidden]{display:none!important}
 .hw-grid{display:grid;gap:28px;align-items:center}
 @media(min-width:1000px){.hw-grid{grid-template-columns:minmax(0,.72fr) minmax(0,1.6fr);gap:40px}}
-.hw h1{margin:14px 0 0;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.08;font-weight:800;letter-spacing:-.02em}
+.hw-title{margin:14px 0 0;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;font-weight:800;letter-spacing:-.02em}
 .hw-copy p{max-width:34rem;margin:16px 0 22px;color:#cfe0f5;font-size:clamp(14px,1.6vw,16px);line-height:1.6}
 .hw-ctas{display:flex;flex-wrap:wrap;gap:10px}
 @media(max-width:700px){.hw-ctas .btn{flex:1 1 100%}}
@@ -42,3 +42,6 @@
 .hw :focus-visible{outline:3px solid #f2c300;outline-offset:2px}
 @media(max-width:700px){.hw-btn{flex:1 1 auto}}
 @media(prefers-reduced-motion:reduce){.hw-glare::before,.hw-stage.hw-done::after{animation:none}}
+
+/* keep the percentage clear of the floating social icons on wide screens */
+.hw-mrow{padding-right:14px}

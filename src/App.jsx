@@ -9,6 +9,7 @@ import Process from "./components/sections/Process.jsx";
 import Results from "./components/sections/Results.jsx";
 import Reviews from "./components/sections/Reviews.jsx";
 import Stats from "./components/sections/Stats.jsx";
+import WashDemo from "./components/sections/WashDemo.jsx";
 import WhyChoose from "./components/sections/WhyChoose.jsx";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <Stats />
+        <WashDemo />
         <Process />
         <section className="conversion" id="calculator">
           <div className="wrap calculator-layout">
