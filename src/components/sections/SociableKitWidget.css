@@ -1,0 +1,6 @@
+/* Styles for the reviews section widget (used by SociableKitWidget.jsx) */
+.rw-wrap{margin-top:24px}
+/* --rw-zoom shrinks the whole widget (cards, text, spacing) so it is less tall. 1 = original size.
+   Try .7 for even shorter, .9 for a little shorter. */
+.rw-widget{--rw-zoom:.6;zoom:var(--rw-zoom);min-height:320px;max-width:100%;overflow:hidden}
+@media(max-width:700px){.rw-wrap{margin-top:16px}.rw-widget{--rw-zoom:1;min-height:260px}}

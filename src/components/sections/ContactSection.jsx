@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { faqs, openWhatsApp, submitNetlify } from "../../content.js";
 import { IconCalc, IconPanels, IconPin, IconWhatsApp } from "../../icons.jsx";
 
@@ -19,12 +19,82 @@ function shuffled(list) {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [...faqs ].map((faq) => ({
+  mainEntity: faqs.map((faq) => ({
     "@type": "Question",
     name: faq.q,
     acceptedAnswer: { "@type": "Answer", text: faq.a.replace(/\n\n/g, " ") },
   })),
 };
+
+// How many questions are visible before the list scrolls
+const VISIBLE_FAQS = 5;
+
+/*
+  FAQ list that shows VISIBLE_FAQS questions and scrolls inside its own box for the rest.
+  - Every answer stays in the page HTML, so search engines still read all of them.
+  - The box height is measured from the real rows (closed), so it fits any font size or screen width.
+  - It is a keyboard-focusable scroll region (arrow keys work).
+*/
+function FaqList({ items }) {
+  const boxRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const box = boxRef.current;
+    if (!box) return undefined;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const rows = () => [...box.querySelectorAll(":scope > details")];
+    const updateEnd = () => box.classList.toggle("at-end", box.scrollTop + box.clientHeight >= box.scrollHeight - 4);
+
+    function measure() {
+      const list = rows();
+      if (list.some((row) => row.open)) return; // measure only while every question is closed
+      if (list.length <= VISIBLE_FAQS) {
+        box.style.setProperty("--faq-h", "none");
+        box.classList.remove("has-more");
+        return;
+      }
+      const last = list[VISIBLE_FAQS - 1];
+      box.style.setProperty("--faq-h", `${last.offsetTop + last.offsetHeight - list[0].offsetTop}px`);
+      box.classList.add("has-more");
+      updateEnd();
+    }
+
+    // "toggle" does not bubble, so it is caught in the capture phase
+    function onToggle(event) {
+      const row = event.target;
+      if (row.tagName !== "DETAILS") return;
+      if (row.open) {
+        box.scrollTo({ top: row.offsetTop - rows()[0].offsetTop, behavior: reduce ? "auto" : "smooth" });
+      } else {
+        measure();
+      }
+    }
+
+    measure();
+    box.addEventListener("toggle", onToggle, true);
+    box.addEventListener("scroll", updateEnd, { passive: true });
+    const observer = "ResizeObserver" in window ? new ResizeObserver(measure) : null;
+    rows().forEach((row) => observer?.observe(row));
+    document.fonts?.ready.then(measure);
+
+    return () => {
+      box.removeEventListener("toggle", onToggle, true);
+      box.removeEventListener("scroll", updateEnd);
+      observer?.disconnect();
+    };
+  }, []);
+
+  return (
+    <div className="faq-scroll" ref={boxRef} tabIndex={0} role="region" aria-label="Frequently asked questions">
+      {items.map((faq) => (
+        <details key={faq.q}>
+          <summary>{faq.q}</summary>
+          {faq.a.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        </details>
+      ))}
+    </div>
+  );
+}
 
 function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -104,35 +174,28 @@ function QuoteForm() {
         </span>
         <small id="capacity-hint" className="field-hint">Enter a number from {limit.min} to {limit.max.toLocaleString("en-US")}</small>
       </label>
-      <label className="field">Area In Karachi *<input name="location" required placeholder="Your area" /></label>
+      <label className="field">Area in Karachi *<input name="location" required placeholder="Your area" /></label>
       <button className="btn yellow" type="submit"><IconWhatsApp /> Get My Quote on WhatsApp →</button>
-      {submitted ? <p className="form-ok">Quote Request Sent On WhatsApp.</p> : null}
+      {submitted ? <p className="form-ok">Quote request sent on WhatsApp.</p> : null}
     </form>
   );
 }
 
 export default function ContactSection() {
-  // Shuffled once per page load: the new FAQs in random order, then the older ones in their fixed order
-  const [faqList] = useState(() => [...shuffled(faqs) ]);
+  // Shuffled once per page load
+  const [faqList] = useState(() => shuffled(faqs));
 
   return (
     <section className="wrap bottom">
       <div className="faq" id="faq">
         <h2>Frequently Asked Questions</h2>
-        <div className="faq-scroll-container">
-          {faqList.map((faq) => (
-                <details key={faq.q}>
-                <summary>{faq.q}</summary>
-            {faq.a.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-                 </details>
-               ))}
-              <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-        </div>        
+        <FaqList items={faqList} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       </div>
       <div className="final" id="clean-quote">
         <div className="final-copy">
           <h2>Ready to <em>Get Your<br />Solar Panels Cleaned?</em></h2>
-          <p>Get A Free Quote Today And Keep Your Solar System Performing At Its Best.</p>
+          <p>Get a free quote today and keep your solar system performing at its best.</p>
           <div className="proof"><span><IconPanels /> 1 Million+ Panels Cleaned</span><span><IconPin /> All Over Karachi</span></div>
         </div>
         <QuoteForm />

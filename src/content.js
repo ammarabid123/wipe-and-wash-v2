@@ -32,6 +32,7 @@ export const steps = [
     title: "Pressure Wash",
     text: "Remove loose dust and dirt.",
     img: "/images/process-01.jpeg",
+    video: "/videos/process-01.mp4", // plays on hover; file lives in public/videos/
     alt: "Pressure washing solar panels",
   },
   {
@@ -39,6 +40,7 @@ export const steps = [
     title: "Apply Solar Shampoo",
     text: "Use our specially formulated, pH-neutral solar shampoo.",
     img: "/images/process-02.jpeg",
+    video: "/videos/process-02.mp4", // plays on hover; file lives in public/videos/
     alt: "Solar shampoo applied to panels",
   },
   {
@@ -46,6 +48,7 @@ export const steps = [
     title: "Gentle Scrubbing",
     text: "Soft-brush cleaning without any scratches.",
     img: "/images/process-03.jpeg",
+    video: "/videos/process-03.mp4", // plays on hover; file lives in public/videos/
     alt: "Soft brush cleaning solar panels",
   },
   {
@@ -53,6 +56,7 @@ export const steps = [
     title: "Final Pressure Wash",
     text: "Rinse and leave panels clean, clear and residue-free.",
     img: "/images/process-04.jpeg",
+    video: "/videos/process-04.mp4", // plays on hover; file lives in public/videos/
     alt: "Final rinse of solar panels",
   },
 ];
@@ -62,21 +66,21 @@ export const results = [
     before: "/images/res-before.jpeg",
     after: "/images/res-after.jpeg",
     title: "Residential Project",
-    meta: "10 kW System · North Nazimabad",
+    meta: "45 kW System · North Nazimabad",
     icon: "home",
   },
   {
     before: "/images/com-before.jpeg",
     after: "/images/com-after.jpeg",
     title: "Commercial Project",
-    meta: "45 kW System · SITE, Karachi",
+    meta: "120 kW System · SITE, Karachi",
     icon: "factory",
   },
   {
     before: "/images/ind-before.jpeg",
     after: "/images/ind-after.jpeg",
     title: "Industrial Project",
-    meta: "120 kW System · Korangi, Karachi",
+    meta: "445 kW System · Korangi, Karachi",
     icon: "factory",
   },
 ];

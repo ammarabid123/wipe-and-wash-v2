@@ -7,7 +7,7 @@ import Hero from "./components/sections/Hero.jsx";
 import Impact from "./components/sections/Impact.jsx";
 import Process from "./components/sections/Process.jsx";
 import Results from "./components/sections/Results.jsx";
-import Reviews from "./components/sections/Reviews.jsx";
+import Reviews from "./components/sections/SociableKitWidget.jsx";
 import Stats from "./components/sections/Stats.jsx";
 import WashDemo from "./components/sections/WashDemo.jsx";
 import WhyChoose from "./components/sections/WhyChoose.jsx";

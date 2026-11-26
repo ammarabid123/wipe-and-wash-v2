@@ -55,7 +55,7 @@ export default function Header({ open, setOpen }) {
           </a>
         ))}
         <a href="#calculator" onClick={() => setOpen(false)}>
-          Calculate Cost
+          Calculate Loss
         </a>
       </nav>
     </header>

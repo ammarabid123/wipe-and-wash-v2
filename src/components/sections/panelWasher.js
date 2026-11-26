@@ -7,7 +7,8 @@
 export function initPanelWasher(root) {
   if (!root) return () => {};
   const q = (name) => root.querySelector(`[data-hw="${name}"]`);
-  const W = 1100, H = 620, r = (n) => Math.random() * n;
+  // Panel height is PH; the canvas is PH + 80 tall (40px margin above and below). Make PH smaller for shorter panels.
+  const PH = 380, W = 1100, H = PH + 80, r = (n) => Math.random() * n;
   const hint = q("hint");
 
   if (!window.Path2D || !document.createElement("canvas").getContext) {
@@ -30,7 +31,7 @@ export function initPanelWasher(root) {
     ctx[n] = c.getContext("2d", { willReadFrequently: n === "foam" });
   });
 
-  const PW = 325, PH = 540, GAP = 22, MX = 22, MY = 40;
+  const PW = 325, GAP = 22, MX = 22, MY = 40;
   const panels = [0, 1, 2].map((i) => ({ x: MX + i * (PW + GAP), y: MY }));
   const glass = new Path2D();
   panels.forEach((p) => glass.rect(p.x + 9, p.y + 9, PW - 18, PH - 18));
@@ -52,13 +53,13 @@ export function initPanelWasher(root) {
     pg.addColorStop(0.93, "rgba(0,0,0,0)"); pg.addColorStop(1, "rgba(0,0,0,.35)");
     c.fillStyle = pg; c.fillRect(0, 0, W, H);
     c.fillStyle = "#9aa2ae";
-    [110, PH - 120].forEach((o) => c.fillRect(MX - 12, MY + o, W - 2 * MX + 24, 16));
+    [Math.round(PH * 0.2), PH - Math.round(PH * 0.22)].forEach((o) => c.fillRect(MX - 12, MY + o, W - 2 * MX + 24, 16));
     panels.forEach((p) => {
       c.fillStyle = "rgba(0,0,0,.25)"; c.fillRect(p.x + 6, p.y + 8, PW, PH);
       g = c.createLinearGradient(p.x, 0, p.x + PW, 0);
       g.addColorStop(0, "#e3e7ec"); g.addColorStop(0.5, "#b9c0ca"); g.addColorStop(1, "#d5dae1");
       c.fillStyle = g; c.fillRect(p.x, p.y, PW, PH);
-      const gx = p.x + 9, gy = p.y + 9, gw = PW - 18, gh = PH - 18, cw = gw / 6, ch = gh / 10;
+      const gx = p.x + 9, gy = p.y + 9, gw = PW - 18, gh = PH - 18, cw = gw / 6, rowsN = Math.max(6, Math.round(gh / cw)), ch = gh / rowsN;
       g = c.createLinearGradient(gx, gy, gx + gw, gy + gh);
       g.addColorStop(0, "#1b4f8f"); g.addColorStop(1, "#0b2a57");
       c.fillStyle = g; c.fillRect(gx, gy, gw, gh);
@@ -66,7 +67,7 @@ export function initPanelWasher(root) {
       c.strokeStyle = "rgba(0,0,0,.4)"; c.strokeRect(gx - 0.5, gy - 0.5, gw + 1, gh + 1);
       c.strokeStyle = "rgba(9,24,48,.9)"; c.lineWidth = 2;
       for (let i = 0; i <= 6; i++) { c.beginPath(); c.moveTo(gx + i * cw, gy); c.lineTo(gx + i * cw, gy + gh); c.stroke(); }
-      for (let j = 0; j <= 10; j++) { c.beginPath(); c.moveTo(gx, gy + j * ch); c.lineTo(gx + gw, gy + j * ch); c.stroke(); }
+      for (let j = 0; j <= rowsN; j++) { c.beginPath(); c.moveTo(gx, gy + j * ch); c.lineTo(gx + gw, gy + j * ch); c.stroke(); }
       c.strokeStyle = "rgba(190,215,250,.16)"; c.lineWidth = 1;
       for (let i = 0; i < 6; i++) for (let k = 1; k < 4; k++) {
         const x = gx + i * cw + (k * cw) / 4; c.beginPath(); c.moveTo(x, gy); c.lineTo(x, gy + gh); c.stroke();
@@ -299,7 +300,7 @@ export function initPanelWasher(root) {
       const i = list[k], [n, , txt, dur, rows] = STEPS[i];
       pick(n, i); note = txt;
       const p = Math.min(1, (now - t0) / dur), qv = p * rows, u = qv % 2;
-      const c = { x: 60 + (u < 1 ? u : 2 - u) * 980, y: 60 + p * 480 };
+      const c = { x: 60 + (u < 1 ? u : 2 - u) * 980, y: 60 + p * (H - 140) };
       pos = c; if (lp) line(lp, c, n); lp = c; dirty = true;
       if (p >= 1) {
         if (i === seqProg) seqProg++; else if (i === 0) seqProg = 1;
