@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   IconBadge,
   IconBolt,
@@ -7,12 +8,53 @@ import {
   IconWhatsApp,
 } from "../../icons.jsx";
 
+/*
+  Background video.
+  - The poster image shows straight away; the video file is only requested after the page has finished loading,
+    so it can never slow down the first view (good for speed / SEO).
+  - Phones get the small file (hero-mobile.mp4), bigger screens get hero.mp4. Both live in public/videos/.
+  - People who asked their device to reduce motion, or who use Data Saver, only see the poster image.
+*/
+const VIDEO_DESKTOP = "/videos/hero.mp4";
+const VIDEO_MOBILE = "/videos/hero-mobile.mp4";
+
+function HeroVideo() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return undefined;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const saveData = navigator.connection?.saveData === true;
+    if (reduceMotion || saveData) return undefined;
+
+    let cancelled = false;
+    function start() {
+      if (cancelled) return;
+      video.muted = true; // browsers only autoplay muted videos
+      video.src = window.matchMedia("(max-width: 700px)").matches ? VIDEO_MOBILE : VIDEO_DESKTOP;
+      video.play().catch(() => {}); // if the browser blocks autoplay, the poster simply stays
+    }
+
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", start);
+      video.pause();
+      video.removeAttribute("src");
+      video.load(); // stops any download that is still running
+    };
+  }, []);
+
+  return <video ref={ref} className="hero-video" muted loop playsInline preload="none" poster="/images/hero.jpg" aria-hidden="true" />;
+}
+
 export default function Hero() {
   return (
     <section className="hero" id="home">
-      <video className="hero-video" autoPlay muted loop playsInline poster="/images/hero.jpg" aria-hidden="true">
-        <source src="/videos/montage-mwm.mp4" type="video/mp4" />
-      </video>
+      <HeroVideo />
       <div className="wrap">
         <div className="hero-copy">
           <span className="eyebrow">Karachi's Solar Panel Cleaning Specialists</span>
