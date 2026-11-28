@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b3a6e" />
-    <title>Wipe &amp; Wash | Solar Panel Cleaning Karachi</title>
+
+    <!-- Search engines -->
+    <title>Solar Panel Cleaning Karachi | Wipe &amp; Wash</title>
     <meta
       name="description"
-      content="Wipe & Wash — professional solar panel cleaning for homes, businesses and industries across Karachi. Calculate your cleaning cost and book on WhatsApp."
+      content="Professional solar panel cleaning in Karachi for homes, offices and factories. Try our free solar loss calculator and get a quote on WhatsApp."
     />
-    <link rel="canonical" href="https://wipeandwash.pk/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://www.wipeandwash.com/" />
+
+    <!-- Icons and fonts -->
     <link rel="icon" type="image/png" href="/images/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,32 +22,65 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Load the hero picture (the first thing visitors see) as early as possible -->
+    <link rel="preload" as="image" href="/images/hero.jpg" fetchpriority="high" />
+
+    <!-- Link previews (WhatsApp, Facebook, LinkedIn). To get the best preview use a 1200 x 630 picture. -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Solar Panel Cleaning Karachi | Wipe & Wash" />
+    <meta property="og:site_name" content="Wipe &amp; Wash" />
+    <meta property="og:locale" content="en_PK" />
+    <meta property="og:url" content="https://www.wipeandwash.com/" />
+    <meta property="og:title" content="Solar Panel Cleaning Karachi | Wipe &amp; Wash" />
     <meta
       property="og:description"
       content="Karachi's solar panel cleaning specialists. Clean panels, higher performance, lower electricity bills."
     />
-    <meta property="og:image" content="/images/hero.jpg" />
-    <meta property="og:locale" content="en_PK" />
-    <meta property="og:site_name" content="Wipe & Wash" />
+    <meta property="og:image" content="https://www.wipeandwash.com/images/hero.jpg" />
+    <meta property="og:image:alt" content="Wipe &amp; Wash team cleaning solar panels in Karachi" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Solar Panel Cleaning Karachi | Wipe &amp; Wash" />
+    <meta
+      name="twitter:description"
+      content="Karachi's solar panel cleaning specialists. Clean panels, higher performance, lower electricity bills."
+    />
+    <meta name="twitter:image" content="https://www.wipeandwash.com/images/hero.jpg" />
+
+    <!-- Business details for Google (structured data). Add "address" (street) and "openingHours" once confirmed. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://www.wipeandwash.com/#business",
+        "name": "Wipe & Wash",
+        "description": "Professional solar panel cleaning for homes, offices and factories in Karachi.",
+        "url": "https://www.wipeandwash.com/",
+        "image": "https://www.wipeandwash.com/images/hero.jpg",
+        "logo": "https://www.wipeandwash.com/images/logo.png",
+        "telephone": "+92-320-2112387",
+        "serviceType": "Solar panel cleaning",
+        "areaServed": { "@type": "City", "name": "Karachi" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Karachi",
+          "addressRegion": "Sindh",
+          "addressCountry": "PK"
+        },
+        "sameAs": [
+          "https://www.facebook.com/wipeandwashsolarpanelcleaningkarachi/",
+          "https://www.instagram.com/wipeandwashofficial/"
+        ]
+      }
+    </script>
   </head>
   <body>
-    <form name="booking" method="POST" data-netlify="true" hidden>
-      <input type="text" name="name" />
-      <input type="tel" name="phone" />
-      <input type="text" name="location" />
-      <input type="text" name="capacity" />
-      <input type="text" name="panels" />
-      <input type="text" name="date" />
-    </form>
-    <form name="quote" method="POST" data-netlify="true" hidden>
-      <input type="text" name="name" />
-      <input type="tel" name="phone" />
-      <input type="text" name="capacity" />
-      <input type="text" name="location" />
-    </form>
     <div id="root"></div>
+    <noscript>
+      <p style="padding: 24px; font-family: Arial, sans-serif">
+        Wipe &amp; Wash: professional solar panel cleaning for homes, offices and factories across Karachi.
+        Please turn on JavaScript to see the full website, or call 0320-2112387 or message us on WhatsApp.
+      </p>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
