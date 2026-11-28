@@ -53,6 +53,10 @@ function StepCard({ step, index }) {
       <img
         src={step.img}
         alt={step.alt}
+        width="800"
+        height="600"
+        loading="lazy"
+        decoding="async"
         onPointerDown={(event) => { pointerType.current = event.pointerType; }}
         onPointerEnter={(event) => { if (event.pointerType === "mouse") start(); }}
         onPointerLeave={(event) => { if (event.pointerType === "mouse") stop(); }}

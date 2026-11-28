@@ -14,7 +14,7 @@ export const steps = [
     n: "01",
     title: "Pressure Wash",
     text: "Remove loose dust and dirt.",
-    img: "/images/process-01.jpeg",
+    img: "/images/process-01.webp",
     video: "/videos/process-01.mp4", // plays on hover; file lives in public/videos/
     alt: "Pressure washing solar panels",
   },
@@ -22,7 +22,7 @@ export const steps = [
     n: "02",
     title: "Apply Solar Shampoo",
     text: "Use our specially formulated, pH-neutral solar shampoo.",
-    img: "/images/process-02.jpeg",
+    img: "/images/process-02.webp",
     video: "/videos/process-02.mp4", // plays on hover; file lives in public/videos/
     alt: "Solar shampoo applied to panels",
   },
@@ -30,7 +30,7 @@ export const steps = [
     n: "03",
     title: "Gentle Scrubbing",
     text: "Soft-brush cleaning without any scratches.",
-    img: "/images/process-03.jpeg",
+    img: "/images/process-03.webp",
     video: "/videos/process-03.mp4", // plays on hover; file lives in public/videos/
     alt: "Soft brush cleaning solar panels",
   },
@@ -38,7 +38,7 @@ export const steps = [
     n: "04",
     title: "Final Pressure Wash",
     text: "Rinse and leave panels clean, clear and residue-free.",
-    img: "/images/process-04.jpeg",
+    img: "/images/process-04.webp",
     video: "/videos/process-04.mp4", // plays on hover; file lives in public/videos/
     alt: "Final rinse of solar panels",
   },
@@ -46,22 +46,22 @@ export const steps = [
 
 export const results = [
   {
-    before: "/images/res-before.jpeg",
-    after: "/images/res-after.jpeg",
+    before: "/images/res-before.webp",
+    after: "/images/res-after.webp",
     title: "Residential Project",
     meta: "45 kW System · North Nazimabad",
     icon: "home",
   },
   {
-    before: "/images/com-before.jpeg",
-    after: "/images/com-after.jpeg",
+    before: "/images/com-before.webp",
+    after: "/images/com-after.webp",
     title: "Commercial Project",
     meta: "120 kW System · SITE, Karachi",
     icon: "factory",
   },
   {
-    before: "/images/ind-before.jpeg",
-    after: "/images/ind-after.jpeg",
+    before: "/images/ind-before.webp",
+    after: "/images/ind-after.webp",
     title: "Industrial Project",
     meta: "445 kW System · Korangi, Karachi",
     icon: "factory",

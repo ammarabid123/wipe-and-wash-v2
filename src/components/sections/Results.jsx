@@ -24,8 +24,8 @@ export default function Results() {
             {visible.map((result) => (
               <article className="result" key={result.title}>
                 <div className="compare">
-                  <img className="before" src={result.before} alt={`${result.title} before cleaning`} />
-                  <img src={result.after} alt={`${result.title} after cleaning`} />
+                  <img className="before" src={result.before} alt={`Solar panels before cleaning: ${result.title}, ${result.meta}`} loading="lazy" decoding="async" />
+                  <img src={result.after} alt={`Solar panels after cleaning: ${result.title}, ${result.meta}`} loading="lazy" decoding="async" />
                   <label>Before</label><label>After</label>
                 </div>
                 <div className="result-meta">

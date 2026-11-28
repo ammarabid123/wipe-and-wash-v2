@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="wrap footer-grid">
           <div className="footer-column footer-about">
             <a className="brand" href="#home">
-              <img src="/images/logo-white.png" alt="Wipe & Wash" />
+              <img src="/images/logo-white.png" alt="Wipe & Wash" loading="lazy" decoding="async" />
             </a>
             <p className="footer-tagline">Solar Lagaooo... Lekin Saaf Bhi Tou Rakhooo...</p>
             <p>Professional Solar Panel Cleaning Services For Homes, Businesses And Factories.</p>
