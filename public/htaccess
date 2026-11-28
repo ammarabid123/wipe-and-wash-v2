@@ -1,0 +1,84 @@
+# =====================================================================
+# Wipe & Wash: Hostinger server settings (LiteSpeed / Apache)
+# Upload this file to public_html together with the rest of the "dist" folder.
+# It does nothing on Vercel previews or on npm run dev.
+# =====================================================================
+
+# --- 1. One address for the site: https://www.wipeandwash.com ---------
+# (limited to our own domain, so Hostinger's temporary test address keeps working)
+RewriteEngine On
+
+# wipeandwash.com  ->  https://www.wipeandwash.com
+RewriteCond %{HTTP_HOST} ^wipeandwash\.com$ [NC]
+RewriteRule ^ https://www.wipeandwash.com%{REQUEST_URI} [L,R=301]
+
+# http://www.wipeandwash.com  ->  https://www.wipeandwash.com
+RewriteCond %{HTTP_HOST} ^www\.wipeandwash\.com$ [NC]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://www.wipeandwash.com%{REQUEST_URI} [L,R=301]
+
+# /index.html  ->  /   (avoids two addresses for the same page)
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [L,R=301]
+
+# --- 2. Safety ---------------------------------------------------------
+Options -Indexes
+ServerSignature Off
+
+# Hidden files (.env, .git, ...) are never served
+<FilesMatch "^\.(?!htaccess$)">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  # Browser remembers to use https for 30 days. Raise to 31536000 (1 year) once everything works.
+  Header always set Strict-Transport-Security "max-age=2592000"
+
+  # Content Security Policy, in TEST mode: the browser only reports problems in the Console (F12), it blocks nothing.
+  # After testing the live site (SociableKit reviews, fonts, video), tell me what the Console shows and
+  # we will switch "Content-Security-Policy-Report-Only" to "Content-Security-Policy".
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' https://widgets.sociablekit.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://widgets.sociablekit.com https://*.sociablekit.com; frame-src https://widgets.sociablekit.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+</IfModule>
+
+# --- 3. Speed: file types, compression and caching ---------------------
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType video/mp4 .mp4
+  AddType font/woff2 .woff2
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/json application/javascript text/javascript image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 day"
+  ExpiresByType text/html "access plus 0 seconds"
+  # /assets/*.js and *.css have a new name every build, so they can be kept for a year
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  # pictures and videos keep their names: 30 days (rename a file when you replace it)
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+  ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
