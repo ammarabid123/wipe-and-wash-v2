@@ -371,3 +371,6 @@ input,select,textarea{max-width:100%}
 .field input[aria-invalid="true"]{border-color:#b42318}
 .form-note{grid-column:1/-1;margin:0}
 .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* ---- Footer: address and opening hours (paste at the END of src/index.css) ---- */
+.footer-address{font-style:normal;margin:5px 0;line-height:1.5}
+.footer-hours{margin:5px 0}

@@ -5,6 +5,8 @@ export const site = {
   whatsappNumber: "923202112387",
   facebook: "https://www.facebook.com/wipeandwashsolarpanelcleaningkarachi/",
   instagram: "https://www.instagram.com/wipeandwashofficial/",
+  address: "G-33 Rajput Mall, Block G, North Nazimabad, Karachi, 74700",
+  hours: "Mon–Sat, 6 am – 8 pm",
 };
 
 export const areas = [

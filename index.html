@@ -46,7 +46,7 @@
     />
     <meta name="twitter:image" content="https://www.wipeandwash.com/images/hero.jpg" />
 
-    <!-- Business details for Google (structured data). Add "address" (street) and "openingHours" once confirmed. -->
+    <!-- Business details for Google (structured data). Keep the address and hours the same as the footer on the website. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -62,9 +62,17 @@
         "areaServed": { "@type": "City", "name": "Karachi" },
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "G-33 Rajput Mall, Block G, North Nazimabad",
           "addressLocality": "Karachi",
           "addressRegion": "Sindh",
+          "postalCode": "74700",
           "addressCountry": "PK"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "06:00",
+          "closes": "20:00"
         },
         "sameAs": [
           "https://www.facebook.com/wipeandwashsolarpanelcleaningkarachi/",
