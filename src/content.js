@@ -9,25 +9,6 @@ export const site = {
   hours: "Mon–Sat, 6 am – 8 pm",
 };
 
-export const areas = [
-  "North Nazimabad",
-  "Gulshan-e-Iqbal",
-  "Gulistan-e-Jauhar",
-  "PECHS",
-  "DHA / Clifton",
-  "Federal B Area",
-  "Korangi",
-  "Landhi",
-  "SITE",
-  "Port Qasim",
-  "Other Karachi area",
-];
-
-export const capacities = ["1–8 kW", "9–12 kW", "13–17 kW", "18–20 kW", "Above 20 kW"];
-
-// Number-of-panels ranges (edit freely; the form adds the word "panels" when sending)
-export const panelRanges = ["Less than 5", "5–10", "11–15", "16–20", "21–25", "Above 25"];
-
 export const steps = [
   {
     n: "01",
@@ -87,27 +68,6 @@ export const results = [
   },
 ];
 
-export const reviews = [
-  {
-    quote:
-      "Very professional service. Clear difference in solar output after cleaning. Highly recommended!",
-    name: "Farhan Ahmed",
-    meta: "North Nazimabad, Karachi",
-  },
-  {
-    quote:
-      "Booked for our office system. The team was punctual, well-equipped and extremely professional.",
-    name: "Ayesha Siddiqui",
-    meta: "PECHS, Karachi",
-  },
-  {
-    quote:
-      "Excellent service and cooperative staff. Our panels are now much cleaner and performing better.",
-    name: "Bilal Hashmi",
-    meta: "Korangi, Karachi",
-  },
-];
-
 // FAQs shown first. They are shuffled on every page load (see ContactSection.jsx).
 // Use "\n\n" inside an answer to start a new paragraph.
 export const faqs = [
@@ -164,18 +124,6 @@ export const faqs = [
     a: "No. We strongly discourage walking on solar panels because it can cause physical damage, including cracks and other panel damage. Our team always tries to clean panels without stepping on them by using professional cleaning equipment and long-reach brushes.\n\nHowever, in certain situations, such as when there is no proper walkway or our 12-foot cleaning brush cannot reach specific panels, stepping on panels may sometimes be necessary. In such cases, we will discuss the situation with the site owner and proceed only after obtaining permission.",
   },
 ];
-
-export function estimateCost(kw, panels, type) {
-  if (type !== "Residential") {
-    return { amount: null, detail: "Commercial / industrial installations require a site-specific quotation." };
-  }
-  if (kw <= 8) return { amount: 1500, detail: "Residential rate slab: 1–8 kW" };
-  if (kw <= 12) return { amount: 2000, detail: "Residential rate slab: 9–12 kW" };
-  if (kw <= 17) return { amount: 2500, detail: "Residential rate slab: 13–17 kW" };
-  if (kw <= 20) return { amount: 3000, detail: "Residential rate slab: 18–20 kW" };
-  if (panels > 0) return { amount: panels * 100, detail: "Above 20 kW: PKR 100 per panel" };
-  return { amount: null, detail: "Please enter your panel count for systems above 20 kW." };
-}
 
 // Opens WhatsApp with a ready message. Call it straight from a click/submit handler (before any "await"),
 // otherwise phone browsers treat the new tab as a blocked popup.

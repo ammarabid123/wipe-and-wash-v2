@@ -133,14 +133,6 @@ export function IconSpark() {
   );
 }
 
-export function IconSend() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="currentColor" d="M3 11.5 21 3l-6.5 18-3.2-6.3L3 11.5Z" />
-    </svg>
-  );
-}
-
 export function IconPin() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">

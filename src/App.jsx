@@ -26,7 +26,7 @@ export default function App() {
         <Process />
         <section className="conversion" id="calculator">
           <div className="wrap calculator-layout">
-            <SolarLossCalculator quoteHref="#clean-quote" />
+            <SolarLossCalculator />
           </div>
         </section>
         <Impact />
