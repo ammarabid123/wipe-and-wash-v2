@@ -1,8 +1,12 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import { faqs, openWhatsApp, submitNetlify } from "../../content.js";
+import { faqs, openWhatsApp, site, submitQuote } from "../../content.js";
 import { IconCalc, IconPanels, IconPin, IconWhatsApp } from "../../icons.jsx";
 
 // Allowed values for the capacity box (change here if the limits ever change)
+// Pakistani mobile numbers: 03XX XXXXXXX, 923XX XXXXXXX or +923XX XXXXXXX (spaces and dashes are allowed)
+const PK_MOBILE = /^(?:92|0)?3\d{9}$/;
+const phoneDigits = (value) => value.replace(/\D/g, "").replace(/^00/, "");
+
 const LIMITS = { panels: { min: 1, max: 5000 }, kw: { min: 1, max: 3000 } };
 
 // Fisher-Yates shuffle (returns a new array)
@@ -98,6 +102,8 @@ function FaqList({ items }) {
 
 function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
+  const phoneRef = useRef(null);
   const [capacityType, setCapacityType] = useState("panels"); // "panels" | "kw"
   const [capacity, setCapacity] = useState("");
   const isPanels = capacityType === "panels";
@@ -108,18 +114,20 @@ function QuoteForm() {
     setCapacity(""); // limits differ, so clear the old number
   }
 
-  async function onSubmit(event) {
+  function onSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
     delete data.capacityType;
-    if (data.capacity) data.capacity = `${data.capacity} ${isPanels ? "panels" : "kW"}`;
+    if (data.website) return; // hidden spam-trap field: only bots fill it in
 
-    try {
-      await submitNetlify("quote", data);
-    } catch (error) {
-      console.error("Netlify quote submission failed:", error);
+    if (!PK_MOBILE.test(phoneDigits(data.phone || ""))) {
+      setPhoneError("Please enter a valid mobile number, for example 0320 1234567.");
+      phoneRef.current?.focus();
+      return;
     }
+    setPhoneError("");
+    if (data.capacity) data.capacity = `${data.capacity} ${isPanels ? "panels" : "kW"}`;
 
     const labels = [
       ["name", "Name"],
@@ -128,7 +136,12 @@ function QuoteForm() {
       ["location", "Area"],
     ];
     const lines = labels.filter(([key]) => data[key]).map(([key, label]) => `${label}: ${data[key]}`);
+
+    // 1) Open WhatsApp first, straight from the click (phone browsers block it after an "await")
     openWhatsApp(`Assalam-o-Alaikum Wipe & Wash.\nFree cleaning quotation request\n${lines.join("\n")}\nPlease contact me to confirm.`);
+    // 2) Then send a backup copy to the business email in the background
+    submitQuote({ ...data, website: "" });
+
     setSubmitted(true);
     form.reset();
     setCapacityType("panels");
@@ -136,11 +149,27 @@ function QuoteForm() {
   }
 
   return (
-    <form className="final-form" name="quote" method="POST" data-netlify="true" onSubmit={onSubmit}>
-      <input type="hidden" name="form-name" value="quote" />
+    <form className="final-form" onSubmit={onSubmit}>
       <h3><IconCalc /> Get a Free Cleaning Quote</h3>
       <label className="field">Full Name *<input name="name" required placeholder="Your name" /></label>
-      <label className="field">WhatsApp Number *<input name="phone" required type="tel" placeholder="03XX XXXXXXX" /></label>
+      <label className="field">WhatsApp Number *
+        <input
+          ref={phoneRef}
+          name="phone"
+          required
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          placeholder="03XX XXXXXXX"
+          aria-invalid={phoneError ? "true" : "false"}
+          aria-describedby={phoneError ? "phone-error" : undefined}
+          onChange={() => phoneError && setPhoneError("")}
+        />
+        {phoneError ? <small id="phone-error" className="field-error" role="alert">{phoneError}</small> : null}
+      </label>
+      <div className="hp-field" aria-hidden="true">
+        <label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
+      </div>
 
       <fieldset className="cap-type">
         <legend>Solar Capacity (choose one)</legend>
@@ -176,7 +205,12 @@ function QuoteForm() {
       </label>
       <label className="field">Area in Karachi *<input name="location" required placeholder="Your area" /></label>
       <button className="btn yellow" type="submit"><IconWhatsApp /> Get My Quote on WhatsApp →</button>
-      {submitted ? <p className="form-ok">Quote request sent on WhatsApp.</p> : null}
+      <small className="field-hint form-note">We use your details only to reply to your quote request.</small>
+      {submitted ? (
+        <p className="form-ok" role="status">
+          Thank you! WhatsApp opened with your request. If it did not open, please call {site.phoneDisplay}.
+        </p>
+      ) : null}
     </form>
   );
 }

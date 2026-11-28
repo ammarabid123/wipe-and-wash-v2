@@ -366,4 +366,8 @@ input,select,textarea{max-width:100%}
   .social-float a.social-float-facebook{width:46px;height:46px}
   .social-float a.social-float-instagram{width:46px;height:46px}
   .social-float a.social-float-whatsapp{width:46px;height:46px}
-}
+}/* ---- Quote form: phone error, privacy note, spam-trap field (paste at the END of src/index.css) ---- */
+.field-error{display:block;margin-top:4px;font-size:12px;font-weight:700;color:#b42318}
+.field input[aria-invalid="true"]{border-color:#b42318}
+.form-note{grid-column:1/-1;margin:0}
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}

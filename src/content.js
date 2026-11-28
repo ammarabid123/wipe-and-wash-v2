@@ -175,16 +175,31 @@ export function estimateCost(kw, panels, type) {
   return { amount: null, detail: "Please enter your panel count for systems above 20 kW." };
 }
 
+// Opens WhatsApp with a ready message. Call it straight from a click/submit handler (before any "await"),
+// otherwise phone browsers treat the new tab as a blocked popup.
 export function openWhatsApp(message) {
   const url = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank", "noopener");
+  const win = window.open(url, "_blank");
+  if (win) {
+    win.opener = null;
+  } else {
+    window.location.assign(url); // popup was blocked: open WhatsApp in this tab instead
+  }
 }
 
-export async function submitNetlify(formName, fields) {
-  const body = new URLSearchParams({ "form-name": formName, ...fields }).toString();
-  await fetch("/", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body,
-  });
+// Sends a backup copy of the quote request to public/api/send-quote.php (works on the Hostinger server).
+// It runs in the background and never blocks or breaks the visitor's flow; on Vercel previews it simply does nothing.
+const QUOTE_ENDPOINT = "/api/send-quote.php";
+
+export function submitQuote(fields) {
+  try {
+    fetch(QUOTE_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fields),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* ignore: WhatsApp is the main channel */
+  }
 }
